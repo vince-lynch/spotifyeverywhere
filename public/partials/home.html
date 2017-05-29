@@ -1,0 +1,38 @@
+
+<script>
+    var authenticateSpotify = function() {
+    window.location.href = "https://accounts.spotify.com/authorize?response_type=code&client_id=9b67a171fe4347cf9e5802ebf71f76ab&redirect_uri=https://app1.vincelynch.com/auth/spotify&scope=user-top-read&scope=user-top-read";
+  };
+  authenticateSpotify();
+</script>
+
+<div class="header-gradient">
+
+
+  <div id="headerImageContainer"></div>
+  <div id="little-arrow"></div>
+
+</div>
+<div id="searchbar-area" style="background: #333441; height:100px;">
+   <form id="searchForm">
+        <input class="form-control" placeholder="Search for artist or album title" data-ng-model="searchText" /> <button class="form-control" id="search-btn" data-ng-click="doSearch(searchText)">SEARCH</button>
+   </form>
+
+</div>
+<div id="results" style="">
+   <div class="magnifying-glass" data-ng-if="albumResults.length < 1"></div>
+   <div id="search-results-text">
+     <span  data-ng-if="albumResults.length < 1">Your results will appear here</span>
+
+     <div id="actualResults">
+       <ul>
+         <li ng-repeat="album in albumResults">
+           <img ng-src="{{album.images[0].url}}"/><em>[ <em data-ng-bind="album.type"></em> ]</em> : <span data-ng-bind="album.name"></span>
+         </li>
+       </ul>
+     </div>
+
+   </div>
+   
+</div>
+ 
