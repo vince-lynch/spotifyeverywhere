@@ -45,11 +45,33 @@
 
 <div id="showModal" ng-show="showModal">
   <div id="white-Card">
-   <img src="/images/Cross@2x.png" width="50px" height="50px" style="position: absolute;right: 0px;" ng-click="closeModal();">
+   <img src="/images/Cross@2x.png" width="50px" height="50px" ng-click="closeModal()" style="position: absolute;right: 0px;z-index: 4" >
     <div style="background: #383a49;"><div style="background: url('{{selectedAlbum.images[0].url}}'); width: 100%; height: 36vh; background-position-y: center;background-size: cover; opacity: 0.8;" class="show-image">
     </div>
      <span class="show-header-text">{{selectedAlbum.name | limitTo: 20}}{{selectedAlbum.name.lengnth > 20 ? '...' : ''}}</span>
     </div>
+
+   <div class="container" ng-if="selectedAlbum.type == 'artist'">
+     <span style="font-size: 23px;color:  #383a49;">Albums</span>
+     <hr/>
+     <ul>
+       <li ng-repeat="album in selectedAlbum.albums track by $index" style="list-style-type: none; padding-bottom: 19px;" ng-if="$index < 4">
+         <img ng-src="{{album.images[0].url}}" width="100px" height="100px"><span ng-bind="album.name" style="font-size: 22px; color: black; font-weight: 600; margin-left: 21px; margin-top: 14px; position: absolute;"></span>
+       </li>
+     </ul>
+   </div>
+
+   <div class="container" ng-if="selectedAlbum.type == 'album'">
+     <span style="font-size: 23px;color:  #383a49;">Tracks</span>
+     <hr/>
+     <ul>
+       <li ng-repeat="album in selectedAlbum.tracks track by $index" style="list-style-type: none; padding-bottom: 19px;" ng-if="$index < 4">
+         <span ng-bind="album.name" style="font-size: 22px; color: black; font-weight: 600;"></span><br/>
+         <span style="font-size: 16px; color: grey;">{{(album.duration_ms / 1000) / 60}} minutes</span>
+       </li>
+     </ul>
+   </div>
+
   </div>
 </div>
  

@@ -25,10 +25,36 @@ angular.module('MyApp')
 	$scope.openDetail = function(album){
 		console.log("called openDetail", album);
 		$scope.showModal = true;
+
 		$scope.selectedAlbum = album;
+		 
+		if(album.type == 'artist'){ // GET ALBUMS
+
+	        $http.get('https://api.spotify.com/v1/search?q=' + album.name + '&type=' + "album" , {}, {headers: {
+	        	'Content-Type': 'application/json'} })
+	        .then(function (response) {
+	            console.log("search albums response", response);
+	            album.albums = response.data.albums.items;
+	            $scope.selectedAlbum = album;
+	        });          	
+
+		} else { // GET TRACKS
+
+	        $http.get("https://api.spotify.com/v1/albums/" + album.id+ "/tracks?offset=0" , {}, {headers: {
+	        	'Content-Type': 'application/json'} })
+	        .then(function (response) {
+	            console.log("search tracks response", response);
+	            album.tracks = response.data.items;
+	            $scope.selectedAlbum = album;
+	        });          	
+
+
+		}
+
 	}
 
 	$scope.closeModal = function(){
+		console.log("close modal called")
 		$scope.showModal = false;
 	}
 
