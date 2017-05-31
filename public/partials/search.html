@@ -19,17 +19,17 @@
 
      <div id="actualResults">
        <ul class="grid">
-         <li ng-repeat="album in albumResults" ng-if="album.images[0].url.length > 1" class="album-card-block">
-           <div class="image-container"><img ng-src="{{album.images[0].url}}" class="main-image"/> 
+         <li ng-repeat="album in albumResults track by $index" ng-if="album.images[0].url.length > 1" class="album-card-block" ng-mouseover="albumResults[$index].hover = true" ng-mouseleave="albumResults[$index].hover = false" ng-class="{'hovering': album.hover}">
+           <div class="image-container"><img ng-src="{{album.images[0].url}}" class="main-image" ng-class="{'hovering': album.hover}"/> 
 
-             <div class="view-more-detail">
-               <img src="/images/Bitmap@2x.png"/>
+             <div class="view-more-detail" ng-show="album.hover" ng-click="openDetail(album)">
+               <img src="/images/Bitmap@2x.png"/><br/>
                 <em ng-if="album.type == 'album'">View Tracks</em>
                 <em ng-if="album.type == 'artist'">View Albums</em>
              </div>
 
              <em ng-if="album.type == 'album'" class="artistOrAlbum"><img src="/images/album-icon@2x.png" width="50px" height="50px"/> </em>
-             <em ng-if="album.type == 'artist'" class="artistOrAlbum"><img src="/images/artist-icon@2x.png" width="50px" height="50px"/> </em>
+             <em ng-if="album.type == 'artist'" class="artistOrAlbum"><img src="/images/artist-icon@2x.png" width="33px" height="30px" style="margin-top: 4px; margin-left: 4px;"/> </em>
            </div><!-- -->
            <div>
             <span>{{album.name | limitTo: 20}}{{album.name.lengnth > 20 ? '...' : ''}}</span>
@@ -41,5 +41,15 @@
 
    </div>
    
+</div>
+
+<div id="showModal" ng-show="showModal">
+  <div id="white-Card">
+   <img src="/images/Cross@2x.png" width="50px" height="50px" style="position: absolute;right: 0px;" ng-click="closeModal();">
+    <div style="background: #383a49;"><div style="background: url('{{selectedAlbum.images[0].url}}'); width: 100%; height: 36vh; background-position-y: center;background-size: cover; opacity: 0.8;" class="show-image">
+    </div>
+     <span class="show-header-text">{{selectedAlbum.name | limitTo: 20}}{{selectedAlbum.name.lengnth > 20 ? '...' : ''}}</span>
+    </div>
+  </div>
 </div>
  

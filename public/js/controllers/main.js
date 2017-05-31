@@ -2,7 +2,9 @@ angular.module('MyApp')
   .controller('MainCtrl', function($scope, $rootScope, $location, $window, $auth, $http) {
 
 	 console.log("main controller loaded");
-	 $scope.albumResults = [];
+	 $scope.albumResults  = [];
+	 $scope.showModal     = false;
+	 $scope.selectedAlbum = {};
 
      var accessToken = window.location.search.split("&")[0].split("access_token=")[1];
      $http.defaults.headers.common['Authorization'] = "Bearer " + accessToken; // set accessToken on allrequests
@@ -19,6 +21,16 @@ angular.module('MyApp')
 	        }
 	    });
 	};
+
+	$scope.openDetail = function(album){
+		console.log("called openDetail", album);
+		$scope.showModal = true;
+		$scope.selectedAlbum = album;
+	}
+
+	$scope.closeModal = function(){
+		$scope.showModal = false;
+	}
 
 
     $scope.searchSpotify = function(albumORartist, query){

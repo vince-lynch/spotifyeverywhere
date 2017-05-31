@@ -507,12 +507,10 @@ textarea {
 -ms-filter: blur(0.5px);
 border-radius: 5px 5px 0px 0px;
 }
-#actualResults img.main-image:hover{
-  width: 100%;
-  height: 240px;
-  
-  opacity: 1;
-  filter: blur(10px);
+
+#actualResults img.main-image.hovering{
+opacity: 1;
+filter: blur(10px);
 -webkit-filter: blur(10px);
 -moz-filter: blur(10px);
 -o-filter: blur(10px);
@@ -555,7 +553,54 @@ li.album-card-block div.view-more-detail{
   margin-top: -186px;
 }
 
+.view-more-detail{
+  opacity: 0;
+}
+.view-more-detail{
+  opacity: 1;
+}
+
+
 .view-more-detail img{
-  width: 42%;
-  margin-left: 23%;
+  width: 54%;
+  margin-left: 26%;
+}
+
+div.view-more-detail em{
+  color: white;
+  font-style: initial;
+  font-weight: 600;
+  text-align: center;
+  margin-left: 29%;
+  font-size: 18px;
+}
+
+
+#showModal{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  top: 0px;
+  z-index: 2;
+  display: block;
+}
+
+#showModal #white-Card{
+  background: white;
+  width: 56%;
+  height: 92%;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+
+#showModal #white-Card .show-header-text{
+  font-size: 34px;
+  color: white;
+  font-weight: 600;
+  margin-top: -65px;
+  margin-left: 54px;
+  position: absolute;
 }
