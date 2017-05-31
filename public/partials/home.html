@@ -25,11 +25,6 @@
      <span  data-ng-if="albumResults.length < 1">Your results will appear here</span>
 
      <div id="actualResults">
-       <ul>
-         <li ng-repeat="album in albumResults">
-           <img ng-src="{{album.images[0].url}}"/><em>[ <em data-ng-bind="album.type"></em> ]</em> : <span data-ng-bind="album.name"></span>
-         </li>
-       </ul>
      </div>
 
    </div>

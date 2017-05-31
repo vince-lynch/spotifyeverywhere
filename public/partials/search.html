@@ -18,9 +18,23 @@
      <span  data-ng-if="albumResults.length < 1">Your results will appear here</span>
 
      <div id="actualResults">
-       <ul>
-         <li ng-repeat="album in albumResults">
-           <img ng-src="{{album.images[0].url}}"/><em>[ <em data-ng-bind="album.type"></em> ]</em> : <span data-ng-bind="album.name"></span>
+       <ul class="grid">
+         <li ng-repeat="album in albumResults" ng-if="album.images[0].url.length > 1" class="album-card-block">
+           <div class="image-container"><img ng-src="{{album.images[0].url}}" class="main-image"/> 
+
+             <div class="view-more-detail">
+               <img src="/images/Bitmap@2x.png"/>
+                <em ng-if="album.type == 'album'">View Tracks</em>
+                <em ng-if="album.type == 'artist'">View Albums</em>
+             </div>
+
+             <em ng-if="album.type == 'album'" class="artistOrAlbum"><img src="/images/album-icon@2x.png" width="50px" height="50px"/> </em>
+             <em ng-if="album.type == 'artist'" class="artistOrAlbum"><img src="/images/artist-icon@2x.png" width="50px" height="50px"/> </em>
+           </div><!-- -->
+           <div>
+            <span>{{album.name | limitTo: 20}}{{album.name.lengnth > 20 ? '...' : ''}}</span>
+           </div>
+           
          </li>
        </ul>
      </div>
